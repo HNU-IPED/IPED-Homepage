@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, memo } from 'react';
 import { ArrowRight, Sparkles, Award, Brain, Zap } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { Button } from './ui/button';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { images } from '../config/images';
+import { useIsMobile } from '../hooks/useMediaQuery';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -14,22 +15,29 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const { t } = useLanguage();
   const { scrollY } = useScroll();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const isMobile = useIsMobile();
+  const shouldReduceMotion = useReducedMotion();
 
-  // Parallax effects
-  const heroY = useTransform(scrollY, [0, 500], [0, 150]);
+  // Parallax effects - 移动端禁用
+  const heroY = useTransform(scrollY, [0, 500], [0, isMobile ? 50 : 150]);
   const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const heroScale = useTransform(scrollY, [0, 500], [1, 0.95]);
+  const heroScale = useTransform(scrollY, [0, 500], [1, isMobile ? 0.98 : 0.95]);
 
   useEffect(() => {
+    // 移动端禁用鼠标跟踪
+    if (isMobile || shouldReduceMotion) return;
+    
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      requestAnimationFrame(() => {
+        setMousePosition({
+          x: (e.clientX / window.innerWidth - 0.5) * 20,
+          y: (e.clientY / window.innerHeight - 0.5) * 20,
+        });
       });
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isMobile, shouldReduceMotion]);
 
   const researchAreas = [
     {
@@ -70,42 +78,44 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     <div className="overflow-hidden">
       {/* Hero Section - Full Screen */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-            animate={{
-              x: [0, 100, 0],
-              y: [0, 50, 0],
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          />
-          <motion.div
-            className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
-            animate={{
-              x: [0, -100, 0],
-              y: [0, -50, 0],
-            }}
-            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          />
-        </div>
+        {/* Animated background elements - 移动端简化 */}
+        {!isMobile && (
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <motion.div
+              className="absolute top-1/4 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl will-change-transform"
+              animate={shouldReduceMotion ? {} : {
+                x: [0, 100, 0],
+                y: [0, 50, 0],
+              }}
+              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl will-change-transform"
+              animate={shouldReduceMotion ? {} : {
+                x: [0, -100, 0],
+                y: [0, -50, 0],
+              }}
+              transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+            />
+          </div>
+        )}
 
         <motion.div
           style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
           className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center"
         >
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: isMobile ? 20 : 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: isMobile ? 0.6 : 1, ease: [0.25, 0.1, 0.25, 1] }}
             className="space-y-8"
           >
             <motion.h1
-              className="text-display gradient-text"
-              style={{
+              className="text-display gradient-text will-change-transform"
+              style={!isMobile ? {
                 x: mousePosition.x * 0.5,
                 y: mousePosition.y * 0.5,
-              }}
+              } : {}}
             >
               {t({ en: 'Touchable Interface Lab', zh: '可触界面实验室' })}
             </motion.h1>
@@ -114,7 +124,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               className="text-body-large text-muted-foreground max-w-3xl mx-auto text-balance"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              transition={{ duration: isMobile ? 0.5 : 1, delay: isMobile ? 0.1 : 0.2 }}
             >
               {t({
                 en: 'Advancing the frontiers of haptic multisensory interaction, intelligent design, and seamless user experiences.',
@@ -126,7 +136,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               className="flex flex-wrap gap-4 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
+              transition={{ duration: isMobile ? 0.4 : 1, delay: isMobile ? 0.15 : 0.4 }}
             >
               <Button
                 onClick={() => onNavigate('research')}
@@ -186,12 +196,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {researchAreas.map((area, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: isMobile ? 20 : 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="group relative bg-gradient-to-br from-card via-card to-muted/30 rounded-3xl p-8 lg:p-10 shadow-sm hover:shadow-xl transition-all border border-border/50"
+                viewport={{ once: true, margin: isMobile ? '-20px' : '-50px' }}
+                transition={{ duration: isMobile ? 0.4 : 0.6, delay: isMobile ? 0 : index * 0.1 }}
+                whileHover={!isMobile ? { y: -8, transition: { duration: 0.3 } } : {}}
+                className="group relative bg-gradient-to-br from-card via-card to-muted/30 rounded-3xl p-8 lg:p-10 shadow-sm hover:shadow-xl transition-shadow border border-border/50 will-change-transform"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative z-10">
@@ -238,10 +248,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: isMobile ? 0.95 : 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: isMobile ? 0.4 : 0.6, delay: isMobile ? 0 : index * 0.1 }}
                 className="bg-background rounded-3xl p-10 text-center shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="text-6xl font-bold gradient-text mb-4">
