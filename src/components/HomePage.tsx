@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, memo } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowRight, Sparkles, Award, Brain, Zap } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { Button } from './ui/button';
