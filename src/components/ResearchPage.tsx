@@ -15,37 +15,37 @@ export const ResearchPage = () => {
     {
       id: 'haptic',
       icon: <Sparkles className="w-6 h-6" />,
-      title: { en: 'Haptic Multisensory Interaction', zh: '触觉多感官交互' },
+      title: { en: 'Haptic Multimodal Perception and Interaction', zh: '触觉多模态感知与交互' },
       description: {
-        en: 'Research on haptic and multisensory multimodal human-computer interaction.',
-        zh: '触觉与多感官多模态人机交互研究。',
-      },
-    },
-    {
-      id: 'ai4ux',
-      icon: <Brain className="w-6 h-6" />,
-      title: { en: 'AI4UX', zh: 'AI赋能用户体验' },
-      description: {
-        en: 'AI-enabled intelligent product interface and user experience design.',
-        zh: 'AI赋能的智能产品界面与用户体验设计。',
+        en: 'Research on how to enhance user perception experience through haptic experience elements such as vibration, heating, texture, and feedback interaction.',
+        zh: '研究如何通过震动、发热、纹理等触觉体验要素和反馈交互提升用户感知体验。',
       },
     },
     {
       id: 'seamless',
       icon: <Zap className="w-6 h-6" />,
-      title: { en: 'Seamless Multi-task Design', zh: '无缝多任务设计' },
+      title: { en: 'Seamless Experience Design in Multi-task Interaction', zh: '多任务交互中的无缝体验设计研究' },
       description: {
-        en: 'Seamless multi-task experience design.',
-        zh: '无缝多任务体验设计。',
+        en: 'Utilizing multimodal user interfaces, task switching, and parallel interaction methods to achieve seamless user experience in multi-task processes.',
+        zh: '在多任务过程中，利用多模态用户界面，任务切换与并行交互方式，实现无缝用户体验。',
+      },
+    },
+    {
+      id: 'ai4ux',
+      icon: <Brain className="w-6 h-6" />,
+      title: { en: 'AI4UX', zh: 'AI4UX' },
+      description: {
+        en: 'Exploring the integration of artificial intelligence and user experience, forming a systematic research covering innovation strategy, research methods, process paradigms, and decision evaluation.',
+        zh: '探索人工智能与用户体验的结合，形成涵盖创新战略、研究方法、流程范式、决策评估的体系化研究。',
       },
     },
     {
       id: 'uncertainty',
       icon: <Award className="w-6 h-6" />,
-      title: { en: 'Uncertainty-driven Design', zh: '不确定性驱动设计' },
+      title: { en: 'Uncertainty-driven Intelligent Design Methods', zh: '不确定性驱动的智能设计方法' },
       description: {
-        en: 'Uncertainty-driven intelligent design methods.',
-        zh: '不确定性驱动的智能设计方法。',
+        en: 'Research on uncertainty theory and machine learning algorithms, quantifying uncertainties of systems, environments, and humans, constructing a closed-loop system covering probability characterization, scientific computing, risk assessment, and intelligent design.',
+        zh: '研究不确定性理论及机器学习算法，量化系统、环境与人的不确定性，构建贯穿概率表征、科学计算、风险评估与智能设计的闭环体系，提升设计的适应性与可靠性。',
       },
     },
   ];

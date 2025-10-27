@@ -34,34 +34,34 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const researchAreas = [
     {
       icon: <Sparkles className="w-6 h-6" />,
-      title: { en: 'Haptic Multisensory Interaction', zh: '触觉多感官交互' },
+      title: { en: 'Haptic Multimodal Perception and Interaction', zh: '触觉多模态感知与交互' },
       desc: {
-        en: 'Haptic and multisensory multimodal human-computer interaction',
-        zh: '触觉与多感官多模态人机交互研究',
-      },
-    },
-    {
-      icon: <Brain className="w-6 h-6" />,
-      title: { en: 'AI4UX', zh: 'AI赋能用户体验' },
-      desc: {
-        en: 'AI-enabled intelligent product interface and user experience design',
-        zh: 'AI赋能的智能产品界面与用户体验设计',
+        en: 'Research on how to enhance user perception experience through haptic experience elements such as vibration, heating, texture, and feedback interaction.',
+        zh: '研究如何通过震动、发热、纹理等触觉体验要素和反馈交互提升用户感知体验。',
       },
     },
     {
       icon: <Zap className="w-6 h-6" />,
-      title: { en: 'Seamless Multi-task Design', zh: '无缝多任务设计' },
+      title: { en: 'Seamless Experience Design in Multi-task Interaction', zh: '多任务交互中的无缝体验设计研究' },
       desc: {
-        en: 'Seamless multi-task experience design',
-        zh: '无缝多任务体验设计',
+        en: 'Utilizing multimodal user interfaces, task switching, and parallel interaction methods to achieve seamless user experience in multi-task processes.',
+        zh: '在多任务过程中，利用多模态用户界面，任务切换与并行交互方式，实现无缝用户体验。',
+      },
+    },
+    {
+      icon: <Brain className="w-6 h-6" />,
+      title: { en: 'AI4UX', zh: 'AI4UX' },
+      desc: {
+        en: 'Exploring the integration of artificial intelligence and user experience, forming a systematic research covering innovation strategy, research methods, process paradigms, and decision evaluation.',
+        zh: '探索人工智能与用户体验的结合，形成涵盖创新战略、研究方法、流程范式、决策评估的体系化研究。',
       },
     },
     {
       icon: <Award className="w-6 h-6" />,
-      title: { en: 'Uncertainty-driven Design', zh: '不确定性驱动设计' },
+      title: { en: 'Uncertainty-driven Intelligent Design Methods', zh: '不确定性驱动的智能设计方法' },
       desc: {
-        en: 'Uncertainty-driven intelligent design methods',
-        zh: '不确定性驱动的智能设计方法',
+        en: 'Research on uncertainty theory and machine learning algorithms, quantifying uncertainties of systems, environments, and humans, constructing a closed-loop system covering probability characterization, scientific computing, risk assessment, and intelligent design to enhance adaptability and reliability.',
+        zh: '研究不确定性理论及机器学习算法，量化系统、环境与人的不确定性，构建贯穿概率表征、科学计算、风险评估与智能设计的闭环体系，提升设计的适应性与可靠性。',
       },
     },
   ];
@@ -175,8 +175,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </h2>
             <p className="text-body-large text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               {t({
-                en: 'Focusing on haptic multisensory and multimodal human-computer interaction, intelligent product interfaces and user experience design. We aim to advance theoretical research and industrial innovation through the integration of AI and HCI technologies.',
-                zh: '专注于触觉多感官与多模态人机交互、智能产品界面与用户体验设计的交叉研究领域。实验室的目标是通过结合人工智能与人机交互技术，推动相关设计领域的理论方法研究与产业应用创新。',
+                en: 'The Touchable Interface Lab focuses on the interdisciplinary research of haptic multisensory and multimodal human-computer interaction, intelligent product interfaces and user experience design. The lab aims to advance theoretical and methodological research and industrial innovation in related design fields through the integration of artificial intelligence and human-computer interaction technologies.',
+                zh: '可触界面实验室（Touchable Interface Lab）专注于触觉多感官与多模态人机交互、智能产品界面与用户体验设计的交叉研究领域。实验室的目标是通过结合人工智能与人机交互技术，推动相关设计领域的理论方法研究与产业应用创新。',
               })}
             </p>
           </motion.div>
@@ -224,8 +224,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </h2>
             <p className="text-body-large text-muted-foreground">
               {t({
-                en: 'Building the future together (Fall 2025)',
-                zh: '共同创造未来（2025年秋季）',
+                en: 'A dynamic research team (As of Fall 2025)',
+                zh: '充满活力的研究团队（截止2025年秋季）',
               })}
             </p>
           </motion.div>
@@ -234,7 +234,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {[
               { number: '8', label: { en: 'PhD Students', zh: '博士生' } },
               { number: '20', label: { en: 'Master Students', zh: '硕士生' } },
-              { number: '8', label: { en: 'Research Assistants', zh: '科研助理' } },
+              { number: '8', label: { en: 'Research Assistants & Interns', zh: '科研助理和本科实习生' } },
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -284,14 +284,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </h2>
             <p className="text-body-large text-muted-foreground leading-relaxed mb-8">
               {t({
-                en: 'Starting from front-line industry needs, we have established deep collaborative relationships with leading companies in mobile communications, smart mobility, smart home, and high-end equipment sectors.',
+                en: 'Starting from front-line industry needs and through years of accumulation, the lab has established deep collaborative relationships with renowned companies in mobile communications, smart mobility, smart home, and high-end equipment sectors.',
                 zh: '实验室从行业一线需求出发，经过多年积累，与移动通信、智慧出行、智能家居、高端装备等行业知名企业建立了深度的合作关系。',
               })}
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
               {t({
-                en: 'Our collaboration covers user research, human factors experiments, data modeling, design standards, design solutions, design patents, and co-creation workshops to explore industry trends.',
-                zh: '合作涵盖用户研究、人因实验、数据建模、设计标准、设计方案、设计专利等合作项目，并联合开展前沿领域共创工作坊。',
+                en: 'Collaboration covers user research, human factors experiments, data modeling, design standards, design solutions, design patents, and more. We also jointly conduct co-creation workshops in cutting-edge fields to explore industry trends and innovative solutions.',
+                zh: '合作涵盖用户研究、人因实验、数据建模、设计标准、设计方案、设计专利等合作项目。同时，还与企业联合开展前沿领域共创工作坊，共同探讨行业趋势、进行创新方案设计。',
               })}
             </p>
           </motion.div>

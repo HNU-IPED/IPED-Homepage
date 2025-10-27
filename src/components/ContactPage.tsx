@@ -164,8 +164,8 @@ export const ContactPage = () => {
             </h1>
             <p className="text-body-large text-muted-foreground max-w-3xl mx-auto">
               {t({
-                en: 'Meet our dynamic research team of 8 PhD students, 20 Master students, and 8 research assistants (Fall 2025).',
-                zh: '了解我们充满活力的研究团队：8名博士生、20名硕士生、8名科研助理（2025年秋季）。',
+                en: 'The lab has a dynamic research team including: 8 PhD students, 20 Master students, and 8 research assistants and undergraduate interns (As of Fall 2025).',
+                zh: '实验室拥有一支充满活力的研究团队，成员包括：在读博士生8名、在读硕士生20名、科研助理和本科实习生8名（截止2025年秋季）。',
               })}
             </p>
           </motion.div>
