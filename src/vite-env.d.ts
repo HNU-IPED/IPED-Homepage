@@ -1,6 +1,12 @@
 /// <reference types="vite/client" />
 
-// This file enables TypeScript typings for import.meta and import.meta.env
-// used throughout the Vite application.
+interface ImportMetaEnv {
+  readonly BASE_URL: string
+  // more env variables...
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
 
 
