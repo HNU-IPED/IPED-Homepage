@@ -139,6 +139,14 @@ export const ContactPage = () => {
         },
         email: '',
       },
+      {
+        name: { en: 'Zeng Weihao', zh: '曾伟浩' },
+        research: {
+          en: 'Master student (Class of 2025). BEng: Dalian University of Technology; MSc: University of Bristol.',
+          zh: '2025级硕士研究生，本科：大连理工大学；硕士：布里斯托大学。',
+        },
+        email: 'student@hnu.edu.cn',
+      },
     ],
     alumni: [
       {
@@ -370,28 +378,28 @@ export const ContactPage = () => {
                 })}
               </p>
             </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamMembers.masters.map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-muted/50 rounded-2xl p-6 hover:bg-muted transition-all"
-              >
-                <div className="w-12 h-12 bg-background rounded-xl flex items-center justify-center mb-4 mx-auto">
-                  <User className="w-6 h-6 text-muted-foreground" />
-                </div>
-                <h4 className="font-medium text-center mb-2 text-foreground">
-                  {t(member.name)}
-                </h4>
-                <p className="text-sm text-muted-foreground text-center leading-relaxed">
-                  {t(member.research)}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {teamMembers.masters.map((member, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="bg-muted/50 rounded-2xl p-6 hover:bg-muted transition-all"
+                >
+                  <div className="w-12 h-12 bg-background rounded-xl flex items-center justify-center mb-4 mx-auto">
+                    <User className="w-6 h-6 text-muted-foreground" />
+                  </div>
+                  <h4 className="font-medium text-center mb-2 text-foreground">
+                    {t(member.name)}
+                  </h4>
+                  <p className="text-sm text-muted-foreground text-center leading-relaxed">
+                    {t(member.research)}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
