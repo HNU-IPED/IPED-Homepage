@@ -140,6 +140,14 @@ export const ContactPage = () => {
         email: 'student@hnu.edu.cn',
       },
       {
+        name: { en: 'Tong Yingdan', zh: '童映丹' },
+        research: {
+          en: 'Master student (Class of 2025), B.Eng. Hunan University. Research: Intelligent Product Design',
+          zh: '2025级硕士研究生，本科湖南大学，研究方向：智能产品设计',
+        },
+        email: '',
+      },
+      {
         name: { en: 'Zeng Weihao', zh: '曾伟浩' },
         research: {
           en: 'Master student (Class of 2025). BEng: Dalian University of Technology; MSc: University of Bristol.',
