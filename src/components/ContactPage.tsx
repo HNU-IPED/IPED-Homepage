@@ -114,12 +114,13 @@ export const ContactPage = () => {
         email: 'student@hnu.edu.cn',
       },
       {
-        name: { en: 'PhD Student Name', zh: '博士生姓名' },
+        name: { en: 'Ruixiao Zheng', zh: '郑瑞啸' },
         research: {
-          en: 'Research area placeholder',
-          zh: '研究方向占位符',
+          en: 'Affective haptics, audio haptic rendering',
+          zh: '情感触觉、声音触觉渲染',
         },
         email: 'student@hnu.edu.cn',
+        avatar: '/people/zheng-ruixiao.jpg',
       },
       {
         name: { en: 'Yang Yijing', zh: '杨逸景' },
@@ -354,8 +355,27 @@ export const ContactPage = () => {
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                   className="bg-muted/50 rounded-2xl p-6 hover:bg-muted transition-all"
                 >
-                  <div className="w-12 h-12 bg-background rounded-xl flex items-center justify-center mb-4 mx-auto">
-                    <User className="w-6 h-6 text-muted-foreground" />
+                  <div className="w-20 h-20 bg-background rounded-xl flex items-center justify-center mb-4 mx-auto overflow-hidden">
+                    { // 头像优先，其次占位图标
+                      // @ts-ignore 允许可选字段 avatar
+                      (member as any).avatar ? (
+                        <ImageWithFallback
+                          // 兼容 base 路径：相对 public 资源需要加上 import.meta.env.BASE_URL
+                          // @ts-ignore
+                          src={(() => {
+                            const raw = (member as any).avatar as string
+                            if (!raw) return undefined
+                            if (/^https?:\/\//i.test(raw)) return raw
+                            const cleaned = raw.replace(/^\//, '')
+                            return `${import.meta.env.BASE_URL}${cleaned}`
+                          })()}
+                          alt={t(member.name)}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <User className="w-8 h-8 text-muted-foreground" />
+                      )
+                    }
                   </div>
                   <h4 className="font-medium text-center mb-2 text-foreground">
                     {t(member.name)}
