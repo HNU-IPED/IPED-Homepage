@@ -125,7 +125,7 @@ export const ContactPage = () => {
         name: { en: 'Yang Yijing', zh: '杨逸景' },
         research: {
           en: '2022 PhD Student, Master graduated from Loughborough University',
-          zh: '2022博士研究生，硕士毕业于拉夫堡大学',
+          zh: '2022级博士研究生，硕士毕业于拉夫堡大学',
         },
         email: 'student@hnu.edu.cn',
       },
